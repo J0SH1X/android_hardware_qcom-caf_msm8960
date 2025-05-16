@@ -31,12 +31,12 @@ LOCAL_CFLAGS            := $(libOmxAacEnc-def)
 LOCAL_CFLAGS            += -Wno-error
 LOCAL_C_INCLUDES        := $(libOmxAacEnc-inc)
 LOCAL_PRELINK_MODULE    := false
-LOCAL_SHARED_LIBRARIES  := libutils liblog
+LOCAL_SHARED_LIBRARIES  := libutils liblog libhardware
 
 LOCAL_SRC_FILES         := src/aenc_svr.c
 LOCAL_SRC_FILES         += src/omx_aac_aenc.cpp
 
-LOCAL_HEADER_LIBRARIES  := generated_kernel_headers
+LOCAL_HEADER_LIBRARIES  := generated_kernel_headers omxcore_headers
 
 include $(BUILD_SHARED_LIBRARY)
 

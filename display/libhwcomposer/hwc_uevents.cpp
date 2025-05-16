@@ -176,9 +176,9 @@ static void handle_uevent(hwc_context_t* ctx, const char* udata, int len)
 
             if(dpy == HWC_DISPLAY_EXTERNAL) {
                 ctx->mExtDisplay->teardown();
-            } else {
-                ctx->mVirtualDisplay->teardown();
-            }
+            }//  else {
+            //     ctx->mVirtualDisplay->teardown();
+            // }
             ctx->mDrawLock.unlock();
 
             break;
@@ -237,7 +237,7 @@ static void handle_uevent(hwc_context_t* ctx, const char* udata, int len)
                     }
                     ctx->mDrawLock.unlock();
 
-                    ctx->mVirtualDisplay->teardown();
+                    //ctx->mVirtualDisplay->teardown();
                 }
                 ctx->mExtDisplay->configure();
             } else {
@@ -254,7 +254,7 @@ static void handle_uevent(hwc_context_t* ctx, const char* udata, int len)
                         ctx->mVirtualonExtActive = false;
                     }
                 }
-                ctx->mVirtualDisplay->configure();
+              //  ctx->mVirtualDisplay->configure();
             }
 
             Locker::Autolock _l(ctx->mDrawLock);

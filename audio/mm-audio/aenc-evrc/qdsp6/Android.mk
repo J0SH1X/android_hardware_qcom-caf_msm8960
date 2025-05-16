@@ -31,12 +31,12 @@ LOCAL_CFLAGS            := $(libOmxEvrcEnc-def)
 LOCAL_CFLAGS            += -Wno-error
 LOCAL_C_INCLUDES        := $(libOmxEvrcEnc-inc)
 LOCAL_PRELINK_MODULE    := false
-LOCAL_SHARED_LIBRARIES  := libutils liblog
+LOCAL_SHARED_LIBRARIES  := libutils liblog libhardware
 
 LOCAL_SRC_FILES         := src/aenc_svr.c
 LOCAL_SRC_FILES         += src/omx_evrc_aenc.cpp
 
-LOCAL_HEADER_LIBRARIES  := generated_kernel_headers
+LOCAL_HEADER_LIBRARIES  := generated_kernel_headers omxcore_headers
 
 include $(BUILD_SHARED_LIBRARY)
 

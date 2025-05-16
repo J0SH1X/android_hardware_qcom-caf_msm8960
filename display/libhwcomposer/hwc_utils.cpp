@@ -146,7 +146,7 @@ void initContext(hwc_context_t *ctx)
     }
 
     ctx->mExtDisplay = new ExternalDisplay(ctx);
-    ctx->mVirtualDisplay = new VirtualDisplay(ctx);
+    //ctx->mVirtualDisplay = new VirtualDisplay(ctx);
     ctx->mVirtualonExtActive = false;
     ctx->dpyAttr[HWC_DISPLAY_EXTERNAL].isActive = false;
     ctx->dpyAttr[HWC_DISPLAY_EXTERNAL].connected = false;
@@ -454,20 +454,20 @@ void getAspectRatioPosition(hwc_context_t* ctx, int dpy, int extOrientation,
         int extW, extH;
         if(dpy == HWC_DISPLAY_EXTERNAL)
             ctx->mExtDisplay->getAttributes(extW, extH);
-        else
-            ctx->mVirtualDisplay->getAttributes(extW, extH);
-        fbWidth  = ctx->dpyAttr[dpy].xres;
-        fbHeight = ctx->dpyAttr[dpy].yres;
-        //Calculate the position...
-        xRatio = outPos.x/fbWidth;
-        yRatio = outPos.y/fbHeight;
-        wRatio = outPos.w/fbWidth;
-        hRatio = outPos.h/fbHeight;
+        //else
+//            ctx->mVirtualDisplay->getAttributes(extW, extH);
+        // fbWidth  = ctx->dpyAttr[dpy].xres;
+        // fbHeight = ctx->dpyAttr[dpy].yres;
+        // //Calculate the position...
+        // xRatio = outPos.x/fbWidth;
+        // yRatio = outPos.y/fbHeight;
+        // wRatio = outPos.w/fbWidth;
+        // hRatio = outPos.h/fbHeight;
 
-        outPos.x = xRatio * extW;
-        outPos.y = yRatio * extH;
-        outPos.w = wRatio * extW;
-        outPos.h = hRatio * extH;
+        // outPos.x = xRatio * extW;
+        // outPos.y = yRatio * extH;
+        // outPos.w = wRatio * extW;
+        // outPos.h = hRatio * extH;
     }
     // Convert Dim to hwc_rect_t
     outRect.left = outPos.x;
@@ -535,17 +535,17 @@ void calcExtDisplayPosition(hwc_context_t *ctx,
                 // query MDP configured attributes
                 if(dpy == HWC_DISPLAY_EXTERNAL)
                     ctx->mExtDisplay->getAttributes(extW, extH);
-                else
-                    ctx->mVirtualDisplay->getAttributes(extW, extH);
-                //Calculate the ratio...
-                float wRatio = ((float)extW)/fbWidth;
-                float hRatio = ((float)extH)/fbHeight;
+                // else
+                //   //  ctx->mVirtualDisplay->getAttributes(extW, extH);
+                // //Calculate the ratio...
+                // float wRatio = ((float)extW)/fbWidth;
+                // float hRatio = ((float)extH)/fbHeight;
 
-                //convert Dim to hwc_rect_t
-                displayFrame.left *= wRatio;
-                displayFrame.top *= hRatio;
-                displayFrame.right *= wRatio;
-                displayFrame.bottom *= hRatio;
+                // //convert Dim to hwc_rect_t
+                // displayFrame.left *= wRatio;
+                // displayFrame.top *= hRatio;
+                // displayFrame.right *= wRatio;
+                // displayFrame.bottom *= hRatio;
             }
         }else {
             if(extOrient || ctx->dpyAttr[dpy].mDownScaleMode) {

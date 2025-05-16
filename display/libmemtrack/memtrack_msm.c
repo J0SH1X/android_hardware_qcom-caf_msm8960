@@ -18,7 +18,8 @@
 #include <log/log.h>
 
 #include <hardware/memtrack.h>
-
+#include <string.h>
+#include <stdlib.h>
 #include "memtrack_msm.h"
 
 int msm_memtrack_init(const struct memtrack_module *module)

@@ -1,12 +1,12 @@
 #Common headers
-common_includes := libgralloc
-common_includes += liboverlay
-common_includes += libcopybit
-common_includes += libqdutils
-common_includes += libhwcomposer
-common_includes += libexternal
-common_includes += libqservice
-common_includes += libvirtual
+common_includes := hardware/qcom-caf/msm8960/display/libgralloc
+common_includes += hardware/qcom-caf/msm8960/display/liboverlay
+common_includes += hardware/qcom-caf/msm8960/display/libcopybit
+common_includes += hardware/qcom-caf/msm8960/display/libqdutils
+common_includes += hardware/qcom-caf/msm8960/display/libhwcomposer
+common_includes += hardware/qcom-caf/msm8960/display/libexternal
+common_includes += hardware/qcom-caf/msm8960/display/libqservice
+common_includes += hardware/qcom-caf/msm8960/display/libvirtual
 
 common_header_export_path := qcom/display
 

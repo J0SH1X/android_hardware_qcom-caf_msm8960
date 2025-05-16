@@ -1,31 +1,46 @@
 LOCAL_PATH := $(call my-dir)
 include $(LOCAL_PATH)/../common.mk
+
+# Header export module for hwcomposer headers
+include $(CLEAR_VARS)
+LOCAL_MODULE := hwcomposer_headers
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_HEADER_LIBRARY)
+
+# Shared library for hwcomposer
 include $(CLEAR_VARS)
 
-LOCAL_MODULE                  := hwcomposer.$(TARGET_BOARD_PLATFORM)
-LOCAL_MODULE_RELATIVE_PATH    := hw
-LOCAL_VENDOR_MODULE           := true
-LOCAL_MODULE_TAGS             := optional
-LOCAL_C_INCLUDES              := $(common_includes) \
-                                 $(TOP)/external/skia/include/core \
-                                 $(TOP)/external/skia/include/images
-LOCAL_SHARED_LIBRARIES        := $(common_libs) libEGL liboverlay \
-                                 libexternal libqdutils libhardware_legacy \
-                                 libdl libmemalloc libqservice libsync \
-                                 libbinder libvirtual
-LOCAL_CFLAGS                  := $(common_flags) -DLOG_TAG=\"qdhwcomposer\"
+LOCAL_MODULE := hwcomposer.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_VENDOR_MODULE := true
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_C_INCLUDES := $(common_includes) \
+                    $(TOP)/external/skia/include/core \
+                    $(TOP)/external/skia/include/images
+
+LOCAL_SHARED_LIBRARIES := $(common_libs) libEGL liboverlay \
+                          libexternal libqdutils libhardware_legacy \
+                          libdl libmemalloc libqservice libsync \
+                          libbinder
+
+LOCAL_CFLAGS := $(common_flags) -DLOG_TAG=\"qdhwcomposer\"
+
 ifeq ($(GET_DISPLAY_SECURE_STATUS_FROM_HWC),true)
     LOCAL_CFLAGS += -DGET_DISPLAY_SECURE_STATUS_FROM_HWC
 endif
-LOCAL_HEADER_LIBRARIES        := generated_kernel_headers
-LOCAL_SRC_FILES               := hwc.cpp          \
-                                 hwc_utils.cpp    \
-                                 hwc_uevents.cpp  \
-                                 hwc_vsync.cpp    \
-                                 hwc_fbupdate.cpp \
-                                 hwc_mdpcomp.cpp  \
-                                 hwc_copybit.cpp  \
-                                 hwc_qclient.cpp  \
-                                 hwc_dump_layers.cpp
+
+LOCAL_HEADER_LIBRARIES := generated_kernel_headers hwcomposer_headers liboverlay_headers
+
+LOCAL_SRC_FILES := hwc.cpp          \
+                   hwc_utils.cpp    \
+                   hwc_uevents.cpp  \
+                   hwc_vsync.cpp    \
+                   hwc_fbupdate.cpp \
+                   hwc_mdpcomp.cpp  \
+                   hwc_copybit.cpp  \
+                   hwc_qclient.cpp  \
+                   hwc_dump_layers.cpp
 
 include $(BUILD_SHARED_LIBRARY)
